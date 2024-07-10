@@ -1,8 +1,10 @@
-const Task = (props) => {
-    const {task: {task}} = props
+const Task = ({task:{task, id, done}, deleteTask, toggleDone}) => {
     return (
         <div>
-            <p>{task}</p>
+            <p>{task + " "}  
+                <button onClick={() => toggleDone(id)}>{done ? "Undo" : "Done"}</button> 
+                <button onClick={() => deleteTask(id)}>Del</button>
+            </p>
         </div>
     )
 }

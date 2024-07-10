@@ -1,4 +1,4 @@
-const TaskField = ({addTask, handleTaskInputChange, newTaskInput}) => {
+const TaskField = ({addTask, handleTaskInputChange, newTaskInput, toggleDone}) => {
     return (
         <form onSubmit={addTask}>
             <input value={newTaskInput} onChange={handleTaskInputChange}/>

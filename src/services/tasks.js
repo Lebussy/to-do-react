@@ -4,7 +4,12 @@ const restUrl = "http://localhost:3001/tasks"
 
 const getAll = () => {
     const getTasksRequest = axios.get(restUrl)
-    return getTasksRequest.then(response => response.data);
+    const errTask = {
+        id: "1000",
+        task: "Not in database",
+        done: false
+    }
+    return getTasksRequest.then(response => response.data.concat(errTask));
 }
 
 const create = (task) => {
@@ -12,4 +17,14 @@ const create = (task) => {
     return createPostRequest.then(response => response.data)
 }
 
-export default {getAll, create}
+const deleteTask = (id) => {
+    const deleteRequest = axios.delete(`${restUrl}/${id}`)
+    return deleteRequest.then(response => response.data)
+}
+
+const updateTask = (newTaskObj) => {
+    const updateTaskRequest = axios.put(`${restUrl}/${newTaskObj.id}`, newTaskObj)
+    return updateTaskRequest.then(response => response.data)
+}
+
+export default {getAll, create, deleteTask, updateTask}
