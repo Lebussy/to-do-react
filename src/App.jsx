@@ -47,6 +47,7 @@ const App = () => {
     setTasksData(tasksData.filter(task => task.id !== taskId))
   }
 
+  // Method for toggling the done property of a task object in the database
   const toggleDone = (taskId) => {
     const taskToUpdate = tasksData.find(task => task.id === taskId)
     const updatedTaskObject = {...taskToUpdate, "done": !taskToUpdate.done}
@@ -58,10 +59,11 @@ const App = () => {
     })
   }
 
+
   return (
     <>
     <h1>TODO:</h1>
-      <TasksDisplay tasks={tasksData}
+      <TasksDisplay tasks={tasksData.filter(task => !task.done)}
         deleteTask={deleteTask}
         toggleDone={toggleDone}/>
       <TaskField 
@@ -69,6 +71,10 @@ const App = () => {
         newTaskInput={newTaskInput} 
         handleTaskInputChange={handleTaskInputChange}
       />
+    <h2>Completed:</h2>
+    <TasksDisplay tasks={tasksData.filter(task => task.done)}
+        deleteTask={deleteTask}
+        toggleDone={toggleDone}/>
     </>
       
   )
