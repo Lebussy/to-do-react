@@ -1,19 +1,28 @@
 {
   "tasks": [
     {
-      "id": "1",
+      "id": 1,
       "task": "Clean dishes",
-      "done": false
+      "done": false,
+      "position": 1
     },
     {
-      "id": "2",
+      "id": 2,
       "task": "Make dinner",
-      "done": false
+      "done": true,
+      "position": 2
     },
     {
-      "id": "3",
+      "id": 3,
       "task": "Duolingo",
-      "done": false
+      "done": true,
+      "position": 3
+    },
+    {
+      "id": "8a76",
+      "task": "fff",
+      "done": false,
+      "position": 1001
     }
   ]
 }

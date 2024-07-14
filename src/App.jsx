@@ -27,12 +27,18 @@ const App = () => {
     event.preventDefault()
     const newTaskObj = {
       task: newTaskInput,
-      done: false
+      done: false,
+      position: getNextTaskPosition()
     }
     tasksService.create(newTaskObj).then(addedTask => {
       setTasksData(tasksData.concat(addedTask))
     })
     setNewTaskInput("")
+  }
+
+  // Method for getting the next available task-position
+  const getNextTaskPosition = () => {
+    return Math.max(...tasksData.map(task => task.position)) + 1
   }
 
   // Error alert callback for manipulating non-existant data from database

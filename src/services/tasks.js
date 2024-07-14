@@ -7,7 +7,8 @@ const getAll = () => {
     const errTask = {
         id: "1000",
         task: "Not in database",
-        done: false
+        done: false,
+        position: 1000
     }
     return getTasksRequest.then(response => response.data.concat(errTask));
 }
