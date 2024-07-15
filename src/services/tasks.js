@@ -10,7 +10,8 @@ const getAll = () => {
         done: false,
         position: 1000
     }
-    return getTasksRequest.then(response => response.data.concat(errTask));
+    return getTasksRequest.then(response => {
+        return response.data.concat(errTask)});
 }
 
 const create = (task) => {
@@ -24,6 +25,7 @@ const deleteTask = (id) => {
 }
 
 const updateTask = (newTaskObj) => {
+    console.log("Updatetask called", newTaskObj)
     const updateTaskRequest = axios.put(`${restUrl}/${newTaskObj.id}`, newTaskObj)
     return updateTaskRequest.then(response => response.data)
 }
