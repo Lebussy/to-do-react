@@ -25,7 +25,6 @@ const deleteTask = (id) => {
 }
 
 const updateTask = (newTaskObj) => {
-    console.log("Updatetask called", newTaskObj)
     const updateTaskRequest = axios.put(`${restUrl}/${newTaskObj.id}`, newTaskObj)
     return updateTaskRequest.then(response => response.data)
 }

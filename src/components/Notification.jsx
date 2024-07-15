@@ -21,12 +21,11 @@ const inlineStyles = {
 }
 
 const Notification = ({notification}) => {
-    console.log("Notification component called ", notification)
     if (notification === null){
         return null
     }
     return (
-        <div className={notification.isError? inlineStyles.error : inlineStyles.success}>{notification.message}</div>
+        <div style={notification.isError? inlineStyles.error : inlineStyles.success}>{notification.message}</div>
     )
 }
 
