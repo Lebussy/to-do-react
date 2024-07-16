@@ -4,14 +4,8 @@ const restUrl = "http://localhost:3001/tasks"
 
 const getAll = () => {
     const getTasksRequest = axios.get(restUrl)
-    const errTask = {
-        id: "1000",
-        task: "Not in database",
-        done: false,
-        position: 1000
-    }
     return getTasksRequest.then(response => {
-        return response.data.concat(errTask)});
+        return response.data});
 }
 
 const create = (task) => {

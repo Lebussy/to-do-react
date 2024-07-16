@@ -6,7 +6,8 @@ import tasks from "./services/tasks"
 import Notification from "./components/Notification"
 
 
-// TODO: Adding notes attached to the task. Can be atted at the task creation or can be added afterwards
+// TODO: Adding notes attached to the task. Can be added at the task creation or can be added afterwards
+  // start with edit
 // TODO: Add an optional due date for the task.
 
 
@@ -17,6 +18,13 @@ const App = () => {
   const [newTaskInput, setNewTaskInput] = useState("")
   // State for the notification message
   const [notification, setNotification] = useState(null)
+  // State for controlling the notes input for the task
+  const [newNoteInput, setNewNoteInput] = useState("")
+
+  // Method for controlling the note input of the new task
+  const handleNoteInputChange = (event) => {
+    setNewNoteInput(event.target.value)
+  }
 
   // Method for controlling the new task input
   const handleTaskInputChange = (event) => {
@@ -38,10 +46,16 @@ const App = () => {
       done: false,
       position: getNextTaskPosition()
     }
+    // For adding a task note to the task, null if controller is an empty string
+    newTaskObj.note = newNoteInput === "" ? null : newNoteInput
+    if (newNoteInput === ""){
+      console.log("FOOOOO")
+    }
     tasksService.create(newTaskObj).then(addedTask => {
       setTasksData(tasksData.concat(addedTask))
     })
     setNewTaskInput("")
+    setNewNoteInput("")
   }
 
   // Method for getting the next available task-position
@@ -76,8 +90,8 @@ const App = () => {
   }
 
   // TODO: Method for deleting the done tasks
-  const clearDone = async () => {
-    if (window.confirm("Are you sure? This will delete all done tasks and cannot be undone.")){
+  const clearDone = () => {
+    if (window.confirm("Are you sure?")){
       tasksData.filter(task => task.done).forEach(task => {
         tasksService.deleteTask(task.id)
       })
@@ -106,6 +120,8 @@ const App = () => {
         addTask={addTask} 
         newTaskInput={newTaskInput} 
         handleTaskInputChange={handleTaskInputChange}
+        newNoteInput={newNoteInput}
+        handleNoteInputChange={handleNoteInputChange}
       />
     <h2>Completed:</h2>
     <button onClick={clearDone}>Clear done</button>
