@@ -1,3 +1,27 @@
 {
-  "tasks": []
+  "tasks": [
+    {
+      "id": "4f64",
+      "task": "Antoher task",
+      "done": false,
+      "position": 1,
+      "note": "this tasks note\n"
+    },
+    {
+      "id": "f906",
+      "task": "foo",
+      "note": "notes",
+      "done": false,
+      "position": 2,
+      "due": null
+    },
+    {
+      "id": "3775",
+      "task": "tasksy",
+      "note": null,
+      "done": false,
+      "position": 3,
+      "due": "2024-07-27"
+    }
+  ]
 }

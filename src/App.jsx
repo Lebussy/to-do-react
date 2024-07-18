@@ -5,11 +5,11 @@ import TaskField from "./components/TaskField"
 import tasks from "./services/tasks"
 import Notification from "./components/Notification"
 
-
-// TODO: Adding notes attached to the task. Can be added at the task creation or can be added afterwards
-  // start with edit
 // TODO: Add an optional due date for the task.
 
+// TODO: Consider, do we want exposure of notes to be optional?
+
+// TODO: Add local weather? - see countries task app
 
 const App = () => {
   // State for storing the task data
@@ -20,6 +20,17 @@ const App = () => {
   const [notification, setNotification] = useState(null)
   // State for controlling the notes input for the task
   const [newNoteInput, setNewNoteInput] = useState("")
+  // State for controlling the due date of the task
+  const [dueDate, setDueDate] = useState('')
+  // State for showing due date field
+  const [showDueDateInput, setShowDueDateInput] = useState(false)
+
+
+  // For controlling the due date input
+  const handleDateChange = (event) => {
+    setDueDate(event.target.value)
+    console.log(event.target.value)
+  }
 
   // Method for controlling the note input of the new task
   const handleNoteInputChange = (event) => {
@@ -43,19 +54,20 @@ const App = () => {
     event.preventDefault()
     const newTaskObj = {
       task: newTaskInput,
+      note: newNoteInput === "" ? null : newNoteInput,
       done: false,
-      position: getNextTaskPosition()
+      position: getNextTaskPosition(),
+      due: dueDate === "" ? null : dueDate
     }
-    // For adding a task note to the task, null if controller is an empty string
-    newTaskObj.note = newNoteInput === "" ? null : newNoteInput
-    if (newNoteInput === ""){
-      console.log("FOOOOO")
-    }
-    tasksService.create(newTaskObj).then(addedTask => {
-      setTasksData(tasksData.concat(addedTask))
-    })
+    
+    tasksService.create(newTaskObj)
+      .then(addedTask => {
+        console.log("Added task", addedTask)
+        setTasksData(tasksData.concat(addedTask))
+      })
     setNewTaskInput("")
     setNewNoteInput("")
+    setDueDate("")
   }
 
   // Method for getting the next available task-position
@@ -122,6 +134,9 @@ const App = () => {
         handleTaskInputChange={handleTaskInputChange}
         newNoteInput={newNoteInput}
         handleNoteInputChange={handleNoteInputChange}
+        dueDate={dueDate}
+        handleDateChange={handleDateChange}
+        showDueDateInput={showDueDateInput}
       />
     <h2>Completed:</h2>
     <button onClick={clearDone}>Clear done</button>
