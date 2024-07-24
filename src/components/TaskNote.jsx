@@ -1,6 +1,6 @@
 const TaskNote = ({note}) => {
     if (!note) {
-        return null
+        return <br/>
     }
     return (
         <>

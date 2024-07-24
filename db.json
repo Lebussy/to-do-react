@@ -1,27 +1,36 @@
 {
   "tasks": [
     {
-      "id": "4f64",
-      "task": "Antoher task",
+      "id": "4e63",
+      "task": "Mow the lawn",
+      "note": "Need to do this before it rains maybe, straight away",
       "done": false,
       "position": 1,
-      "note": "this tasks note\n"
+      "due": "2024-07-24"
     },
     {
-      "id": "f906",
-      "task": "foo",
-      "note": "notes",
+      "id": "e62e",
+      "task": "Clean out laurens car",
+      "note": "Dont need to go too crazy, consider hoover though",
       "done": false,
       "position": 2,
-      "due": null
+      "due": "2024-07-24"
     },
     {
-      "id": "3775",
-      "task": "tasksy",
+      "id": "6d4b",
+      "task": "Do duolingo",
       "note": null,
       "done": false,
       "position": 3,
-      "due": "2024-07-27"
+      "due": null
+    },
+    {
+      "id": "b314",
+      "task": "this way date formatt",
+      "note": null,
+      "done": false,
+      "position": 4,
+      "due": "23/07/24"
     }
   ]
 }

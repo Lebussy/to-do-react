@@ -5,7 +5,7 @@ const DateInput = ({showDueDateInput, dueDate, handleDateChange}) => {
   return (
     <div> 
       <legend>Due</legend>
-      <input type="date" value={dueDate} onChange={handleDateChange}/>
+      <input type="date" value={dueDate} onChange={handleDateChange} required={true}/>
     </div>
   )
 }

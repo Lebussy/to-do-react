@@ -25,11 +25,15 @@ const App = () => {
   // State for showing due date field
   const [showDueDateInput, setShowDueDateInput] = useState(false)
 
+  // For toggling if the due date input is shown
+  const toggleShowDueDateInput = (event) => {
+    event.preventDefault()
+    setShowDueDateInput(!showDueDateInput)
+  }
 
   // For controlling the due date input
   const handleDateChange = (event) => {
     setDueDate(event.target.value)
-    console.log(event.target.value)
   }
 
   // Method for controlling the note input of the new task
@@ -49,6 +53,18 @@ const App = () => {
     })
   }, [])
 
+  // Method for formatting the date into dd/mm/yy
+  const formatDate = (dateString) => {
+    const date = new Date(dateString)
+
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const year = String(date.getFullYear()).slice(-2); // Get the last 2 digits of the year
+
+    const formattedDate = `${day}/${month}/${year}`
+    return formattedDate
+  } 
+
   // Method for adding a new task to the database
   const addTask = (event) => {
     event.preventDefault()
@@ -57,22 +73,23 @@ const App = () => {
       note: newNoteInput === "" ? null : newNoteInput,
       done: false,
       position: getNextTaskPosition(),
-      due: dueDate === "" ? null : dueDate
+      due: dueDate === "" ? null : formatDate(dueDate)
     }
-    
+
     tasksService.create(newTaskObj)
       .then(addedTask => {
-        console.log("Added task", addedTask)
         setTasksData(tasksData.concat(addedTask))
       })
     setNewTaskInput("")
     setNewNoteInput("")
     setDueDate("")
+    setShowDueDateInput(false)
   }
 
   // Method for getting the next available task-position
   const getNextTaskPosition = () => {
-    return Math.max(...tasksData.map(task => task.position)) + 1
+    const currentHighest = Math.max(...tasksData.map(task => task.position))
+    return currentHighest > 0 ? currentHighest + 1 : 1
   }
 
   // Method for deleting a task from the database
@@ -124,11 +141,7 @@ const App = () => {
   return (
     <>
     <Notification notification={notification}/>
-    <h1>TODO:</h1>
-      <TasksDisplay tasks={tasksData.filter(task => !task.done)}
-        deleteTask={deleteTask}
-        toggleDone={toggleDone}/>
-      <TaskField 
+    <TaskField 
         addTask={addTask} 
         newTaskInput={newTaskInput} 
         handleTaskInputChange={handleTaskInputChange}
@@ -137,8 +150,13 @@ const App = () => {
         dueDate={dueDate}
         handleDateChange={handleDateChange}
         showDueDateInput={showDueDateInput}
+        toggleShowDueDateInput={toggleShowDueDateInput}
       />
-    <h2>Completed:</h2>
+    <h2>TODO:</h2>
+      <TasksDisplay tasks={tasksData.filter(task => !task.done)}
+        deleteTask={deleteTask}
+        toggleDone={toggleDone}/>
+    <h2>COMPLETED:</h2>
     <button onClick={clearDone}>Clear done</button>
     <TasksDisplay tasks={tasksData.filter(task => task.done)}
         deleteTask={deleteTask}
