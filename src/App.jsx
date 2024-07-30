@@ -49,6 +49,7 @@ const App = () => {
   // Effect for fetching the tasks data from the json server
   useEffect(() => {
     tasksService.getAll().then(data => setTasksData(data)).catch(err => {
+      notify("Could not connect to database", true)
       setTasksData([])
     })
   }, [])
@@ -104,10 +105,15 @@ const App = () => {
     const taskToUpdate = tasksData.find(task => task.id === taskId)
     const updatedTaskObject = {...taskToUpdate, "done": !taskToUpdate.done}
 
+    // Uses the tasks service to update the task object in the database
     tasksService.updateTask(updatedTaskObject)
     .then(updated => {
-      setTasksData(tasksData.map(task => {
+      // If successful, and done === true, notifies with nice!
+      if (updated.done){
         notify("Nice!", false)
+      }
+      // Updates the task in the apps state storing the tasks
+      setTasksData(tasksData.map(task => {
         return task.id !== taskId
         ? task
         : updated

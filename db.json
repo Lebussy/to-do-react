@@ -1,36 +1,44 @@
 {
   "tasks": [
     {
-      "id": "4e63",
-      "task": "Mow the lawn",
-      "note": "Need to do this before it rains maybe, straight away",
+      "id": "8dfd",
+      "task": "2h study",
+      "note": null,
       "done": false,
       "position": 1,
-      "due": "2024-07-24"
+      "due": "29/07/24"
     },
     {
-      "id": "e62e",
-      "task": "Clean out laurens car",
-      "note": "Dont need to go too crazy, consider hoover though",
+      "id": "8eac",
+      "task": "2h study",
+      "note": null,
       "done": false,
       "position": 2,
-      "due": "2024-07-24"
+      "due": "29/07/24"
     },
     {
-      "id": "6d4b",
-      "task": "Do duolingo",
+      "id": "0b54",
+      "task": "drink coffee with Mika",
       "note": null,
       "done": false,
       "position": 3,
       "due": null
     },
     {
-      "id": "b314",
-      "task": "this way date formatt",
+      "id": "b836",
+      "task": "Do 1h working on own project",
       "note": null,
       "done": false,
       "position": 4,
-      "due": "23/07/24"
+      "due": null
+    },
+    {
+      "id": "0317",
+      "task": "do poo",
+      "note": null,
+      "done": true,
+      "position": 5,
+      "due": null
     }
   ]
 }

@@ -11,13 +11,12 @@ const TaskField = ({addTask, handleTaskInputChange, newTaskInput, newNoteInput, 
                 <textarea placeholder="optional" value={newNoteInput} onChange={handleNoteInputChange}/>
             </div>
             <div>
-              <button onClick={toggleShowDueDateInput}>{showDueDateInput? "Remove Due-Date" : "Add Due-Date"}</button>
+              <button type='button' onClick={toggleShowDueDateInput}>{showDueDateInput? "Remove Due-Date" : "Add Due-Date"}</button>
               <DateInput dueDate={dueDate} handleDateChange={handleDateChange} showDueDateInput={showDueDateInput}/>
             </div>
-            <div>
               <br></br>
               <button type="submit" style={{color: "lightblue", backgroundColor: "orange"}}>Add Task</button>
-            </div>
+            
         </form>
     )
 }
